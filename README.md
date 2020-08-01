@@ -12,7 +12,7 @@
 	* 3.1. [Configuring the internal broker](#Configuringtheinternalbroker)
 	* 3.2. [Subscribing to topics](#Subscribingtotopics)
 	* 3.3. [Publishing to topics](#Publishingtotopics)
-* 4. [Example: Smart Home Integration using MQTT](#Example:SmartHomeIntegrationusingMQTT)
+* 4. [Example: Smart Home Integration using MQTT](#SmartHomeIntegrationusingMQTT)
 	* 4.1. [Installing 3rd-party nodes](#Installing3rd-partynodes)
 	* 4.2. [Google Home (NORA)](#GoogleHomeNORA)
 	* 4.3. [Amazon Alexa](#AmazonAlexa)
@@ -142,7 +142,7 @@ Now deploy the flow. When you press the inject button you should see the 2nd lig
 
 ![publish2](https://i.imgur.com/2CEw4PH.png)
 
-##  4. <a name='Example:SmartHomeIntegrationusingMQTT'></a>Example: Smart Home Integration using MQTT
+##  4. <a name='SmartHomeIntegrationusingMQTT'></a>Example: Smart Home Integration using MQTT
 
 ###  4.1. <a name='Installing3rd-partynodes'></a>Installing 3rd-party nodes
 
