@@ -31,7 +31,7 @@ The `inject` node allows you to inject preset messages into a flow, either by cl
 
 Drag one onto the workspace (main grid) from the palette (left sidebar).
 
-![inject](https://i.imgur.com/J4SLEkE.png)
+![inject](https://i.imgur.com/AVjgXjp.png)
 
 ### 2. Add a Debug node
 
