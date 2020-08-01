@@ -1,33 +1,25 @@
 # Using Node-RED with the Sensor Hub
 
-<!-- vscode-markdown-toc -->
-* 1. [Installation](#Installation)
-* 2. [Creating your first flow](#Creatingyourfirstflow)
-	* 2.1. [Add an Inject node](#AddanInjectnode)
-	* 2.2. [Add a Debug node](#AddaDebugnode)
-	* 2.3. [Wire the two together](#Wirethetwotogether)
-	* 2.4. [Deploy](#Deploy)
-	* 2.5. [Add a Function node](#AddaFunctionnode)
-* 3. [Using with MQTT on the Hub](#UsingwithMQTTontheHub)
-	* 3.1. [Configuring the internal broker](#Configuringtheinternalbroker)
-	* 3.2. [Subscribing to topics](#Subscribingtotopics)
-	* 3.3. [Publishing to topics](#Publishingtotopics)
-* 4. [Example: Smart Home Integration using MQTT](#SmartHomeIntegrationusingMQTT)
-	* 4.1. [Installing 3rd-party nodes](#Installing3rd-partynodes)
-	* 4.2. [Google Home (NORA)](#GoogleHomeNORA)
-	* 4.3. [Amazon Alexa](#AmazonAlexa)
-* 5. [End](#End)
-	* 5.1. [Resources](#Resources)
-
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
+* [Installation](#Installation)
+* [Creating your first flow](#Creatingyourfirstflow)
+	* [1. Add an Inject node](#AddanInjectnode)
+	* [2. Add a Debug node](#AddaDebugnode)
+	* [3. Wire the two together](#Wirethetwotogether)
+	* [4. Deploy](#Deploy)
+	* [5. Add a Function node](#AddaFunctionnode)
+* [Using with MQTT on the Hub](#UsingwithMQTTontheHub)
+	* [Configuring the internal broker](#Configuringtheinternalbroker)
+	* [Subscribing to topics](#Subscribingtotopics)
+	* [Publishing to topics](#Publishingtotopics)
+* [Example: Smart Home Integration using MQTT](#SmartHomeIntegrationusingMQTT)
+	* [Installing 3rd-party nodes](#Installing3rd-partynodes)
+	* [Google Home (NORA)](#GoogleHomeNORA)
+	* [Amazon Alexa](#AmazonAlexa)
+* [End](#End)
+	* [Resources](#Resources)
 
 
-
-##  1. <a name='Installation'></a>Installation
+## <a name='Installation'></a>Installation
 
 Run the following command to install:
 
@@ -51,9 +43,9 @@ Once Node-RED is running, you can access the editor from another machine with th
 
 More information can be found here: https://nodered.org/docs/getting-started/raspberrypi
 
-##  2. <a name='Creatingyourfirstflow'></a>Creating your first flow
+## <a name='Creatingyourfirstflow'></a>Creating your first flow
 
-###  2.1. <a name='AddanInjectnode'></a>Add an Inject node
+### <a name='AddanInjectnode'></a>1. Add an Inject node
 
 The `inject` node allows you to inject preset messages into a flow, either by clicking the button, or setting a time interval between injects.
 
@@ -61,23 +53,23 @@ Drag one onto the workspace (main grid) from the palette (left sidebar).
 
 ![inject](https://i.imgur.com/AVjgXjp.png)
 
-###  2.2. <a name='AddaDebugnode'></a>Add a Debug node
+### <a name='AddaDebugnode'></a>2. Add a Debug node
 
 The `debug` node allows any message to be displayed in the Debug sidebar (right) which can be accessed from here:
 
 ![debug](https://i.imgur.com/hZ65wwI.png)
 
-###  2.3. <a name='Wirethetwotogether'></a>Wire the two together
+### <a name='Wirethetwotogether'></a>3. Wire the two together
 
 Connect the `inject` and `debug` nodes by dragging from the output port of one to the input port of the other.
 
 ![wire](https://i.imgur.com/tgrrgXS.png)
 
-###  2.4. <a name='Deploy'></a>Deploy
+### <a name='Deploy'></a>4. Deploy
 
 Click the Deploy button (top-right) to deploy the flow to the server. For each press of the inject button on the `inject` node, in the Debug sidebar you should see a number pop up (timestamp in milliseconds).
 
-###  2.5. <a name='AddaFunctionnode'></a>Add a Function node
+### <a name='AddaFunctionnode'></a>5. Add a Function node
 
 The `function` node allows you to pass messages through a JavaScript function.
 
@@ -104,9 +96,9 @@ Now when you click the inject button, the function will take in the raw timestam
 
 
 
-##  3. <a name='UsingwithMQTTontheHub'></a>Using with MQTT on the Hub
+## <a name='UsingwithMQTTontheHub'></a>Using with MQTT on the Hub
 
-###  3.1. <a name='Configuringtheinternalbroker'></a>Configuring the internal broker
+### <a name='Configuringtheinternalbroker'></a>Configuring the internal broker
 
 Add an `mqtt in` node and double-click it to edit the properties. Add a new broker with the following settings:
 
@@ -114,7 +106,7 @@ Add an `mqtt in` node and double-click it to edit the properties. Add a new brok
 
 Then, go to the Security tab and enter the username and password for the internal broker.
 
-###  3.2. <a name='Subscribingtotopics'></a>Subscribing to topics
+### <a name='Subscribingtotopics'></a>Subscribing to topics
 
 Configure an `mqtt in` node to subscribe to the `events/object/rawTemperature` topic:
 
@@ -124,7 +116,7 @@ Connect this to a `debug` node and you should see the temperature being logged w
 
 ![subscribe2](https://i.imgur.com/UGLVxNe.png)
 
-###  3.3. <a name='Publishingtotopics'></a>Publishing to topics
+### <a name='Publishingtotopics'></a>Publishing to topics
 
 Configure an `mqtt out` node to publish to the `commands/object/lightringPattern` topic:
 
@@ -142,9 +134,9 @@ Now deploy the flow. When you press the inject button you should see the 2nd lig
 
 ![publish2](https://i.imgur.com/2CEw4PH.png)
 
-##  4. <a name='SmartHomeIntegrationusingMQTT'></a>Example: Smart Home Integration using MQTT
+## <a name='SmartHomeIntegrationusingMQTT'></a>Example: Smart Home Integration using MQTT
 
-###  4.1. <a name='Installing3rd-partynodes'></a>Installing 3rd-party nodes
+### <a name='Installing3rd-partynodes'></a>Installing 3rd-party nodes
 
 For this example, we will be using 3rd-party nodes to handle the integration with Google Home and Amazon Alexa.
 
@@ -157,7 +149,7 @@ Select the `Manage Palette` option from the main menu (top-right) to open the Pa
 
 This can take a few minutes. Click `View log` to check the status.
 
-###  4.2. <a name='GoogleHomeNORA'></a>Google Home (NORA)
+### <a name='GoogleHomeNORA'></a>Google Home (NORA)
 
 We will be adding the Sensor Hub as a thermostat to our Google Home using the NORA nodes that we added earlier.
 
@@ -236,7 +228,7 @@ Now you just need to add the device to your Google Home. Open the Google Home ap
 
 You can now assign the Sensor Hub to any room. Try asking Google Assistant "Ok Google, what is the temperature inside?" to get the current temperature from the Hub. You can also ask "Ok Google, set the temperature to 21 degrees" to publish the setpoint over MQTT.
 
-###  4.3. <a name='AmazonAlexa'></a>Amazon Alexa
+### <a name='AmazonAlexa'></a>Amazon Alexa
 
 For Amazon Alexa, we will be adding temperature and motion sensors to our smart home using the Alexa nodes that we added earlier.
 
@@ -315,11 +307,11 @@ You can now assign the Sensor Hub to any room/group. Try asking "Alexa, what is 
 
 <img src="https://i.imgur.com/4GJNzbO.jpg" width="300">
 
-##  5. <a name='End'></a>End
+## <a name='End'></a>End
 
 [Here](https://drive.google.com/file/d/1HDF5eD8VtYeA42fMrsJmodwcQ2KnExV7/view?usp=sharing) is the complete flow for this tutorial (you will have to configure the internal broker login, nora token, and alexa account for it to work correctly).
 
-###  5.1. <a name='Resources'></a>Resources
+### <a name='Resources'></a>Resources
 
 - [Node-RED Documentation](https://nodered.org/docs/)
 - [Node-RED MQTT Recipes](https://cookbook.nodered.org/mqtt/)
