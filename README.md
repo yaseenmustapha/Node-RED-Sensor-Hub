@@ -309,7 +309,7 @@ You can now assign the Sensor Hub to any room/group. Try asking "Alexa, what is 
 
 ## <a name='End'></a>End
 
-[Here](https://drive.google.com/file/d/1HDF5eD8VtYeA42fMrsJmodwcQ2KnExV7/view?usp=sharing) is the complete flow for this tutorial (you will have to configure the internal broker login, nora token, and alexa account for it to work correctly).
+[Here](./tutorial.json) is the complete flow for this tutorial (you will have to configure the internal broker login, nora token, and alexa account for it to work correctly).
 
 ### <a name='Resources'></a>Resources
 
