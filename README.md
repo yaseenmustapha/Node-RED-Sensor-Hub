@@ -280,7 +280,7 @@ var temperature = Number(jsonPayload.Present_Value);
 return { "acknowledge" : true, "payload" : { "state" : { "temperature" : temperature } } };
 ```
 
-The motion sensor is a bit different though as it is doesn't give the number of occupants, but only whether it is occupied or not instead.
+The motion sensor is a bit different though as it is doesn't give the number of occupants, but whether it is occupied or not instead.
 
 We can use a `function` node between the `mqtt in` node and motion sensor with the following code to deal with this:
 
