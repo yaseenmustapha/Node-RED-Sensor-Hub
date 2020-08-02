@@ -100,7 +100,7 @@ Now when you click the inject button, the function will take in the raw timestam
 
 ### <a name='Configuringtheinternalbroker'></a>Configuring the internal broker
 
-Add an `mqtt in` node and double-click it to edit the properties. Add a new broker with the following settings:
+Add an `mqtt in` node and double-click it to edit the properties. Next to "Add new mqtt-broker..." click the pencil icon. Add a new broker with the following settings:
 
 ![broker](https://i.imgur.com/Ev8Sdng.png)
 
@@ -108,13 +108,13 @@ Then, go to the Security tab and enter the username and password for the interna
 
 ### <a name='Subscribingtotopics'></a>Subscribing to topics
 
-Configure an `mqtt in` node to subscribe to the `events/object/rawTemperature` topic:
+Configure an `mqtt in` node to subscribe to the `events/object/occupantTemperature` topic:
 
-![subscribe](https://i.imgur.com/YK5xrVO.png)
+![subscribe](https://i.imgur.com/HdRVzMg.png)
 
 Connect this to a `debug` node and you should see the temperature being logged when you deploy the flow. Any time a change in temperature is observed, it should be logged as well.
 
-![subscribe2](https://i.imgur.com/UGLVxNe.png)
+![subscribe2](https://i.imgur.com/Cup9UVM.png)
 
 ### <a name='Publishingtotopics'></a>Publishing to topics
 
@@ -167,11 +167,11 @@ Create an `inject` node for the thermostat's mode. Connect it to the `thermostat
 }
 ```
 
-Create `mqtt in` nodes for setpoint (topic: `events/object/tempSetPoint`) and temperature (topic: `events/object/rawTemperature`).
+Create `mqtt in` nodes for setpoint (topic: `events/object/tempSetPoint`) and temperature (topic: `events/object/occupantTemperature`).
 
 At this point, your flow should look like this:
 
-![nora2](https://i.imgur.com/tRWuhWB.png)
+![nora2](https://i.imgur.com/c0oyztp.png)
 
 As you saw previously, the `mqtt in` node outputs something like:
 
@@ -184,7 +184,7 @@ As you saw previously, the `mqtt in` node outputs something like:
 }
 ```
 
-But the `thermostat` would expect this as its input (for temperature):
+But the `thermostat` node would expect this as its input (for temperature):
 
 ```json
 {
@@ -210,7 +210,7 @@ var setpoint = jsonPayload.Present_Value;
 return {"payload": {"setpoint": setpoint}};
 ```
 
-You can also add an `mqtt out` node for the setpoint (topic: `events/object/tempSetPoint`). Add a `function` node to convert the `thermostat` output to what the MQTT topic expects. The code is as follows:
+You can also add an `mqtt out` node for the setpoint (topic: `events/object/tempSetPoint`). Add a `function` node to convert the `thermostat` node output to what the MQTT topic expects. The code is as follows:
 
 ```javascript
 var jsonPayload = JSON.parse(msg.payload.setpoint);
@@ -220,9 +220,9 @@ return {"payload": {"Present_Value": jsonPayload, "Units": "", "updated":  "31-0
 
 Now, your flow should look like this:
 
-![nora3](https://i.imgur.com/D83bC8L.png)
+![nora3](https://i.imgur.com/phoBILs.png)
 
-Now you just need to add the device to your Google Home. Open the Google Home app on your phone and follow the these steps:
+Deploy the flow. Now all that's left is to add the device to your Google Home. Open the Google Home app on your phone and follow the these steps:
 
 ![nora4](https://i.imgur.com/8OvWX1X.jpg)
 
@@ -236,7 +236,7 @@ First, create an account [here](https://red.cb-net.co.uk/new-user) and create bo
 
 ![alexa1](https://i.imgur.com/zwPTQ5X.png)
 
-Add two `alexa smart home v3 state` nodes, one for each sensor. Double-click on them and add your account. You should then see your devices populate here:
+In Node-RED, add two `alexa smart home v3 state` nodes, one for each sensor. Double-click on them and add your account. You should then see your devices populate here:
 
 ![alexa2](https://i.imgur.com/58gnEQA.png)
 
@@ -244,11 +244,11 @@ With the nodes selected, you can view their acceptable input in the Help sidebar
 
 ![alexa3](https://i.imgur.com/YouyGeO.png)
 
-Create `mqtt in` nodes for temperature (topic: `events/object/rawTemperature`) and occupancy (topic: `events/object/combinedOccupancy`).
+Create `mqtt in` nodes for temperature (topic: `events/object/occupantTemperature`) and occupancy (topic: `events/object/combinedOccupancy`).
 
 At this point, your flow should look like this:
 
-![alexa4](https://i.imgur.com/xjpxkxo.png)
+![alexa4](https://i.imgur.com/OxNknvb.png)
 
 As you saw previously, the `mqtt in` node outputs something like:
 
@@ -297,9 +297,9 @@ if (combinedOccupancy === 0) {
 
 Now, your flow should look like this:
 
-![alexa5](https://i.imgur.com/z3Nhj8J.png)
+![alexa5](https://i.imgur.com/yaQV0Z2.png)
 
-Now you just need to add the device to Amazon Alexa. Open the Alexa app on your phone and follow the these steps:
+Deploy the flow. Now all that's left is to add the device to Amazon Alexa. Open the Alexa app on your phone and follow the these steps:
 
 ![alexa6](https://i.imgur.com/4q6KQjo.jpg)
 
